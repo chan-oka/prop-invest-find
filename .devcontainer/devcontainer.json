@@ -1,0 +1,38 @@
+{
+  "name": "Ruby on Rails Development",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "web",
+  "workspaceFolder": "/prop-invest-find",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "rebornix.ruby",
+        "castwide.solargraph",
+        "Shopify.ruby-extensions-pack",
+        "aki77.rails-db-schema",
+        "hridoy.rails-snippets",
+        "Shopify.ruby-lsp",
+        "Hridoy.rails-snippets",
+        "miguel-savignano.ruby-symbols",
+        "sorbet.sorbet-vscode-extension",
+        "KoichiSasada.vscode-rdbg",
+        "ms-azuretools.vscode-docker"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "editor.formatOnSave": true,
+        "ruby.useLanguageServer": true,
+        "ruby.lint": { "rubocop": { "useBundler": true } },
+        "ruby.format": "rubocop",
+        "[ruby]": {
+          "editor.defaultFormatter": "Shopify.ruby-lsp",
+          "editor.formatOnSave": true
+        },
+        "rubyLsp.formatter": "rubocop",
+        "rubyLsp.rubyVersionManager": "none"
+      }
+    }
+  },
+  "postCreateCommand": "bundle install",
+  "remoteUser": "rails"
+}

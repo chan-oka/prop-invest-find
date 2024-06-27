@@ -6,13 +6,14 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
     networks:
-      - prop_invest_find_network
+      - prop-invest-find-network
 
   web:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle install && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
-      - .:/prop_invest_find
+      - .:/prop-invest-find:cached
+      - bundle:/usr/local/bundle
     ports:
       - "3000:3000"
     depends_on:
@@ -20,8 +21,11 @@ services:
     tty: true
     stdin_open: true
     networks:
-      - prop_invest_find_network
+      - prop-invest-find-network
+
+volumes:
+  bundle:
 
 networks:
-  prop_invest_find_network:
+  prop-invest-find-network:
     driver: bridge

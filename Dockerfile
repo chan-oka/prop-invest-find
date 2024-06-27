@@ -5,13 +5,15 @@ ARG RUBY_VERSION=3.3.1
 FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
 
 # Rails app lives here
-WORKDIR /rails
+WORKDIR /prop-invest-find
 
 # Set production environment
 ENV RAILS_ENV="development" \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle"
 
+RUN mkdir -p /usr/local/bundle && chown -R $USER:$USER /usr/local/bundle
+ENV BUNDLE_FROZEN=false
 
 # Throw-away build stage to reduce size of final image
 FROM base as build
@@ -41,20 +43,21 @@ FROM base
 
 # Install packages needed for deployment
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl default-mysql-client libvips && \
+    apt-get install --no-install-recommends -y curl default-mysql-client libvips vim git && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Copy built artifacts: gems, application
 COPY --from=build /usr/local/bundle /usr/local/bundle
-COPY --from=build /rails /rails
+COPY --from=build /prop-invest-find /prop-invest-find
 
 # Run and own only the runtime files as a non-root user for security
 RUN useradd rails --create-home --shell /bin/bash && \
-    chown -R rails:rails db log storage tmp
+    chown -R rails:rails /prop-invest-find /usr/local/bundle
 USER rails:rails
 
+
 # Entrypoint prepares the database.
-ENTRYPOINT ["/rails/bin/docker-entrypoint"]
+ENTRYPOINT ["/prop-invest-find/bin/docker-entrypoint"]
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000

@@ -1,0 +1,11 @@
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.3
+  Exclude:
+    - 'bin/**/*'
+    - 'public/**/*'
+    - 'tmp/**/*'
+    - 'log/**/*'
+
+Style/Documentation:
+  Enabled: false

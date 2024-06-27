@@ -1,0 +1,14 @@
+{
+    "solargraph.useBundler": true,
+    "solargraph.diagnostics": true,
+    "solargraph.formatting": true,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "castwide.solargraph",
+    "[ruby]": {
+        "editor.defaultFormatter": "Shopify.ruby-lsp"
+    },
+    "rubyLsp.formatter": "rubocop",
+    "rubyLsp.rubyVersionManager": {
+        "identifier": "none"
+    }
+}
