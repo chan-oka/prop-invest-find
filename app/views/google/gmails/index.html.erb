@@ -1,0 +1,22 @@
+<h1>Gmails</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>From</th>
+      <th>Subject</th>
+      <th>Body</th>
+      <th>Received At</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @google_gmails.each do |gmail| %>
+      <tr>
+        <td><%= gmail.from %></td>
+        <td><%= gmail.subject %></td>
+        <td><%= gmail.body_plain_text %></td>
+        <td><%= gmail.received_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

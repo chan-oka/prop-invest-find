@@ -9,3 +9,27 @@ AllCops:
 
 Style/Documentation:
   Enabled: false
+
+Metrics/AbcSize:
+  Max: 100
+
+Metrics/MethodLength:
+  Enabled: false
+  CountComments: false
+  Max: 200
+
+Metrics/BlockLength:
+  Enabled: false
+  Exclude:
+    - '*'
+  Max: 100
+
+Metrics/LineLength:
+  Enabled: false
+  CountComments: false
+  Max: 200
+
+Metrics/ClassLength:
+  Enabled: false
+  CountComments: false
+  Max: 300

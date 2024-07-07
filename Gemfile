@@ -4,9 +4,8 @@ source 'https://rubygems.org'
 
 ruby '3.3.1'
 
-gem 'gmail_xoauth', '~> 0.4.2'
-gem 'sidekiq'
-gem 'sidekiq-cron'
+gem 'google-apis-gmail_v1'
+gem 'googleauth'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.1.3', '>= 7.1.3.4'
@@ -31,6 +30,8 @@ gem 'stimulus-rails'
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jbuilder'
+
+gem 'nokogiri'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
@@ -59,6 +60,7 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
 
+  gem 'pry-rails'
   gem 'rubocop'
   gem 'ruby-lsp'
   gem 'solargraph'

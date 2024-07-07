@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  message_id: MyString
+  from: MyString
+  subject: MyString
+  body: MyText
+  received_at: 2024-06-28 13:51:24
+
+two:
+  message_id: MyString
+  from: MyString
+  subject: MyString
+  body: MyText
+  received_at: 2024-06-28 13:51:24
