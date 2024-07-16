@@ -155,6 +155,14 @@ module Google
         credentials = authorizer.get_and_store_credentials_from_code(
           user_id:, code:, base_url: 'urn:ietf:wg:oauth:2.0:oob'
         )
+      elsif credentials.expired?
+        begin
+          credentials.refresh!
+        rescue Signet::AuthorizationError
+          # リフレッシュに失敗した場合、新しい認証を要求
+          token_store.delete(user_id)
+          return authorize # 再帰的に呼び出し
+        end
       end
       credentials
     end

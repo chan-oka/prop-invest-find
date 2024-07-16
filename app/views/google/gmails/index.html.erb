@@ -1,9 +1,10 @@
 <h1>Gmails</h1>
 
-<table>
+<table border="1">
   <thead>
     <tr>
-      <th>From</th>
+      <th>sender</th>
+      <th>price</th>
       <th>Subject</th>
       <th>Body</th>
       <th>Received At</th>
@@ -12,9 +13,10 @@
   <tbody>
     <% @google_gmails.each do |gmail| %>
       <tr>
-        <td><%= gmail.from %></td>
+        <td><%= gmail.sender %></td>
+        <td><%= gmail.property_price %></td>
         <td><%= gmail.subject %></td>
-        <td><%= gmail.body_plain_text %></td>
+        <td><%= gmail.body_plain_text_half_width %></td>
         <td><%= gmail.received_at %></td>
       </tr>
     <% end %>
