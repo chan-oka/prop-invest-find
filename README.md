@@ -33,6 +33,20 @@ docker-compose run web rails db:create
 
 3. ブラウザでhttp://localhost:3000を開き、Railsアプリケーションが実行されていることを確認します。
 
+5. Seedを実行
+```bash
+bundle exec rails db:seed
+```
+
+4. Gmailを取得
+```bash
+# 未読メールを取得、DBに保存できると既読にします
+bundle exec rails google:gmails:fetch_unread
+
+# 全メールを取得、DBに保存できると既読にします
+bundle exec rails google:gmails:fetch_all
+```
+
 ## ライセンス
 
 - daisaku.okada
