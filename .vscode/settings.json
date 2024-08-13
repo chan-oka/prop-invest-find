@@ -10,5 +10,6 @@
     "rubyLsp.formatter": "rubocop",
     "rubyLsp.rubyVersionManager": {
         "identifier": "none"
-    }
+    },
+    "remote.autoForwardPortsFallback": 0
 }

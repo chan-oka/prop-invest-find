@@ -9,18 +9,19 @@ module Extractor
     end
 
     def run
-      return [] if @text.nil? || @text.empty?
+      return [] if @text.nil?
+      return [] if @text.empty?
       return [] if fetch_patterns.nil?
 
-      separat
+      separat.map do |separatd|
+        { name: separatd.first, text: separatd.second }
+      end
     end
 
     private
 
     def separat
-      return nil if fetch_patterns.empty?
-
-      @text.split(fetch_patterns.first).drop(1)
+      @text.scan(fetch_patterns.first)
     end
 
     def fetch_patterns

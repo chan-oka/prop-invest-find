@@ -39,7 +39,7 @@ class GoogleGmail < ApplicationRecord
     def make_record(message)
       sender = message.payload.headers.find { |h| h.name == 'From' }&.value
       sender_domain = extraction_email_domain(sender)
-      return if EXCLUDED_EMAIL_DOMAINS.include?(sender_domain)
+      return if excluded_email_domain?(sender_domain)
 
       body = get_body(message)
       if body.present?
@@ -75,6 +75,10 @@ class GoogleGmail < ApplicationRecord
       email_regex = /\b[A-Za-z0-9._%+-]+@([A-Za-z0-9.-]+\.[A-Z|a-z]{2,})\b/i
       mail_address.scan(email_regex).flatten.first
     end
+
+    def excluded_email_domain?(domain)
+      EXCLUDED_EMAIL_DOMAINS.include?(domain)
+    end
   end
 
   def property_price
@@ -88,5 +92,9 @@ class GoogleGmail < ApplicationRecord
   def sender_email_address
     email_regex = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/
     sender.scan(email_regex).first
+  end
+
+  def excluded_email_domain?
+    self.class.excluded_email_domain?(sender_email_domain)
   end
 end

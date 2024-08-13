@@ -5,6 +5,8 @@ module Google
     def index
       google_gmails = []
       GoogleGmail.order(received_at: :desc).each do |google_gmail|
+        next if google_gmail.excluded_email_domain?
+
         separatd_texts = Extractor::PropertySeparatorService.new(
           google_gmail.sender_email_domain,
           google_gmail.body_plain_text_half_width
@@ -12,7 +14,8 @@ module Google
         if separatd_texts.present?
           separatd_texts.each do |separatd_text|
             copy_google_gmail = google_gmail.deep_dup
-            copy_google_gmail.body_plain_text_half_width = separatd_text
+            copy_google_gmail.subject = separatd_text[:name]
+            copy_google_gmail.body_plain_text_half_width = separatd_text[:text]
             google_gmails.push(copy_google_gmail)
           end
         else
