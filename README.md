@@ -50,5 +50,3 @@ bundle exec rails google:gmails:fetch_all
 ## ライセンス
 
 - daisaku.okada
-- OkamoLife株式会社
-
